@@ -5,12 +5,8 @@ import psycopg2
 import sys
 from datetime import datetime
 
-CON = psycopg2.connect(
-    host=os.environ['HOST'],
-    database=os.environ['DATABASE'],
-    user=os.environ['USER'],
-    password=os.environ['PASSWORD']
-)
+DATABASE_URL = os.environ['DATABASE_URL']
+CON = psycopg2.connect(DATABASE_URL, sslmode='require')
 CON.set_session(autocommit=True)
 CURSOR = CON.cursor()
 
